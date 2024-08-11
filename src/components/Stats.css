@@ -1,0 +1,24 @@
+.stats-container {
+    padding: 20px;
+  }
+
+  .usage-details {
+    margin-top: 20px;
+  }
+  
+  .number-usage {
+    margin-bottom: 20px;
+  }
+  
+  .number-usage h4 {
+    margin-bottom: 5px;
+  }
+  
+  .number-usage ul {
+    padding-left: 20px;
+  }
+  
+  .number-usage li {
+    margin-bottom: 5px;
+  }
+  

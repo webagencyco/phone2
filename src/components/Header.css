@@ -1,0 +1,135 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 2.3rem;
+  background: -webkit-linear-gradient(top, #c6117d 0%, #e50471 100%);
+  color: white;
+}
+
+.navList {
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+  text-wrap: nowrap;
+}
+
+.navItem {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownButton {
+  display: flex;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+  color: #333;
+  padding: 2rem;
+  top: 38px;
+  left: -20px;
+}
+.featuresDropDown{
+  width: 800px;
+}
+.bglight {
+  background-color: rgb(244, 244, 250);
+}
+
+.extraSvg {
+  font-size: 30px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+.dropdownMenu::before {
+  content: "";
+  height: 15px;
+  width: 15px;
+  background-color: rgb(237, 237, 238);
+  clip-path: polygon(48% 54%, 0% 100%, 100% 100%);
+  position: absolute;
+  top: -15px;
+  left: 40px;
+  z-index: 10;
+}
+.dropdownTitle {
+  margin-top: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.dropdownDescription {
+  margin-bottom: 1rem;
+}
+
+.dropdownList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.dot {
+  height: 20px;
+  width: 20px;
+  background-color: #6a5acd;
+  border-radius: 50%;
+  border: 4px solid #ccc7e9;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemTitle {
+  font-weight: 700;
+  padding: 5px 0;
+}
+
+.itemDescription {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.accountButton {
+  display: flex;
+  gap: 0.2rem;
+  background-color: white;
+  border: 1px solid -webkit-linear-gradient(top, #c6117d 0%, #f50b7c 100%);;
+  color: #351285;
+  border: none;
+  font-weight: 700;
+  padding: 0.7rem 1.3rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.accountButton:hover {
+  transform: scale(1.1);
+}
