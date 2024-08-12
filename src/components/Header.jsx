@@ -237,22 +237,25 @@ function Header() {
           <li className="navItem">Contact</li>
         </ul>
       </nav>
-      <a href="/admin">
-        <button className="accountButton dropdown" 
-        // onClick={() => handleDropDowns(7)}
-        >
-          My Account
-          <IoMdArrowDropdown style={{ transform: "translateY(4px)" }} />
-        </button>
-        {dropdownsOpen === 7 && (
-          <div className="dropdownMenu" style={{ minWidth: "250px" }}>
-            <a href="/admin">
-              <h5 className="dropdownTitle">Account Administration </h5>
-            </a>
-            
-          </div>
-        )}
-      </a>
+      <div className="flex">
+        <a href="/admin">
+          <button
+            className="accountButton dropdown"
+            // onClick={() => handleDropDowns(7)}
+          >
+            My Account
+            <IoMdArrowDropdown style={{ transform: "translateY(4px)" }} />
+          </button>
+          {dropdownsOpen === 7 && (
+            <div className="dropdownMenu" style={{ minWidth: "250px" }}>
+              <a href="/admin">
+                <h5 className="dropdownTitle">Account Administration </h5>
+              </a>
+            </div>
+          )}
+        </a>
+        <button className="ml-2" onClick={localStorage.removeItem("user")}>Logout</button>
+      </div>
     </header>
   );
 }
