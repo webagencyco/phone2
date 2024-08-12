@@ -10,12 +10,8 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated } = useContext(AuthContext);
 
-  if (isAuthenticated) {
-    navigate("/");
-  }
-  
   const handleLogin = async (e) => {
     e.preventDefault();
     try {

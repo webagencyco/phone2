@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -10,6 +10,8 @@ import axios from "axios";
 import "./PaymentPage.css";
 import { AuthContext } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import { server } from "../App";
+import Select from "react-select";
 
 const stripePromise = loadStripe(
   "pk_test_51NehF1GdOlJmgDN1ZhjKiQ7T2eCotWN4MqC0X1tYqBSVCzzR5ZFZ7w2aw6MTn73FLjco8gnRdZ30W1tDJgq3d1RM00BCFqGCTu"
@@ -22,6 +24,68 @@ const CheckoutForm = ({ paymentDetails, onPaymentDetailsChange }) => {
   const [processing, setProcessing] = useState(false);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [numOptions, setNumOptions] = useState([]);
+  const [tariffOptions, setTariffOptions] = useState([]);
+  const [prices, setPrices] = useState({});
+  const [selectedTariff, setSelectedTariff] = useState(null);
+  const [price, setPrice] = useState("");
+  const [pricesData, setPricesData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [numbersResponse, tariffsResponse, pricesResponse] =
+          await Promise.all([
+            axios.get(`${server}/api/numbers/api`, {
+              headers: {
+                Authorization: `Bearer ${user}`,
+              },
+            }),
+            axios.get(`${server}/api/numbers/tariffs`, {
+              headers: {
+                Authorization: `Bearer ${user}`,
+              },
+            }),
+            axios.get(`${server}/api/numbers/tariffs/prices`, {
+              headers: {
+                Authorization: `Bearer ${user}`,
+              },
+            }),
+          ]);
+        console.log(pricesResponse.data);
+        const numberOptions = numbersResponse.data.map((number) => ({
+          value: number,
+          label: number,
+        }));
+
+        const tariffOptions = Object.keys(pricesResponse.data).map(
+          (tariff) => ({
+            value: tariff,
+            label: tariff,
+          })
+        );
+
+        setNumOptions(numberOptions);
+        setTariffOptions(tariffOptions);
+        console.log("Tariff Options:", tariffOptions);
+        setPricesData(pricesResponse.data); // Store the prices data in state
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [user]);
+
+  const handleTariffChange = (selectedOption) => {
+    onPaymentDetailsChange("tariff", selectedOption.value);
+
+    const selectedPrice = prices[selectedOption.value][0].Price;
+    const includedMinutes = prices[selectedOption.value][0].inclusive;
+
+    onPaymentDetailsChange("amount", selectedPrice);
+    onPaymentDetailsChange("includedMinutes", includedMinutes);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,38 +156,46 @@ const CheckoutForm = ({ paymentDetails, onPaymentDetailsChange }) => {
         <input
           type="number"
           id="amount"
-          value={paymentDetails.amount}
-          onChange={(e) => onPaymentDetailsChange("amount", e.target.value)}
-          required
+          value={price}
+          onChange={(e) => {
+            setPrice(e.target.value);
+            onPaymentDetailsChange("amount", e.target.value);
+          }}
+          readOnly
         />
       </div>
       <div className="form-group">
         <label htmlFor="currency">Currency:</label>
         <input
+          className="outline-none"
           type="text"
           id="currency"
           value={paymentDetails.currency}
           onChange={(e) => onPaymentDetailsChange("currency", e.target.value)}
-          required
+          readOnly
         />
       </div>
       <div className="form-group">
         <label htmlFor="tariff">Tariff:</label>
-        <input
-          type="text"
-          id="tariff"
-          value={paymentDetails.tariff}
-          onChange={(e) => onPaymentDetailsChange("tariff", e.target.value)}
+        <Select
+          options={tariffOptions}
+          onChange={(selectedOption) => {
+            setSelectedTariff(selectedOption.value);
+            const tariffPrices = pricesData[selectedOption.value];
+            const tariffPrice = tariffPrices ? tariffPrices[0].Price : "";
+            setPrice(tariffPrice);
+            onPaymentDetailsChange("tariff", selectedOption.value);
+          }}
           required
         />
       </div>
       <div className="form-group">
         <label htmlFor="number">Number:</label>
-        <input
-          type="text"
-          id="number"
-          value={paymentDetails.number}
-          onChange={(e) => onPaymentDetailsChange("number", e.target.value)}
+        <Select
+          options={numOptions}
+          onChange={(selectedOption) =>
+            onPaymentDetailsChange("number", selectedOption.value)
+          }
           required
         />
       </div>
@@ -185,7 +257,7 @@ const PaymentPage = () => {
   };
 
   return (
-    <div className="payment-page">
+    <div className="payment-page my-10">
       <h2>Payment Page</h2>
       <Elements stripe={stripePromise}>
         <CheckoutForm
