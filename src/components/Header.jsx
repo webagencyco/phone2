@@ -12,7 +12,6 @@ import { ImTree } from "react-icons/im";
 
 function Header() {
   const [dropdownsOpen, setDropdownsOpen] = useState(0);
-
   const handleDropDowns = (numb) => {
     setDropdownsOpen(numb);
     if (numb === dropdownsOpen) {
@@ -102,71 +101,67 @@ function Header() {
                   </p>
                 </div> */}
                 {/* <div className="bglight" style={{ padding: "30px" }}> */}
-                  <h3 className="dropdownTitle">FREE Features</h3>
-                  <p className="dropdownDescription text-lg">
-                    With every Tamar number, you'll get the below features
-                    completely free
-                  </p>
-                  <ul className="dropdownList">
-                    <li className="dropdownItem">
-                      <span>
-                        <PiUserSoundLight className="extraSvg" />
-                      </span>
-                      <div className="itemContent">
-                        <strong className="itemTitle">
-                          01,02 Local Numbers
-                        </strong>
-                        <p className="itemDescription">
-                          Mobile landline numbers
-                        </p>
-                      </div>
-                    </li>
-                    <li className="dropdownItem">
-                      <span>
-                        <GiVibratingSmartphone className="extraSvg" />
-                      </span>
-                      <div className="itemContent">
-                        <strong className="itemTitle">0800 Numbers</strong>
-                        <p className="itemDescription">
-                          Free to call from landlines & mobiles
-                        </p>
-                      </div>
-                    </li>
-                    <li className="dropdownItem">
-                      <span>
-                        <ImTree className="extraSvg" />
-                      </span>
-                      <div className="itemContent">
-                        <strong className="itemTitle">0333 Numbers</strong>
-                        <p className="itemDescription">
-                          Numbers for a nationwide presence
-                        </p>
-                      </div>
-                    </li>
-                    <li className="dropdownItem">
-                      <span>
-                        <CiMicrophoneOn className="extraSvg" />
-                      </span>
-                      <div className="itemContent">
-                        <strong className="itemTitle">0300 Numbers</strong>
-                        <p className="itemDescription">
-                          For charities & public bodies
-                        </p>
-                      </div>
-                    </li>
-                    <li className="dropdownItem">
-                      <span>
-                        <LiaHeadsetSolid className="extraSvg" />
-                      </span>
-                      <div className="itemContent">
-                        <strong className="itemTitle">VoIP System</strong>
-                        <p className="itemDescription">
-                          Complete Business Phone Solution
-                        </p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                <h3 className="dropdownTitle">FREE Features</h3>
+                <p className="dropdownDescription text-lg">
+                  With every Tamar number, you'll get the below features
+                  completely free
+                </p>
+                <ul className="dropdownList">
+                  <li className="dropdownItem">
+                    <span>
+                      <PiUserSoundLight className="extraSvg" />
+                    </span>
+                    <div className="itemContent">
+                      <strong className="itemTitle">01,02 Local Numbers</strong>
+                      <p className="itemDescription">Mobile landline numbers</p>
+                    </div>
+                  </li>
+                  <li className="dropdownItem">
+                    <span>
+                      <GiVibratingSmartphone className="extraSvg" />
+                    </span>
+                    <div className="itemContent">
+                      <strong className="itemTitle">0800 Numbers</strong>
+                      <p className="itemDescription">
+                        Free to call from landlines & mobiles
+                      </p>
+                    </div>
+                  </li>
+                  <li className="dropdownItem">
+                    <span>
+                      <ImTree className="extraSvg" />
+                    </span>
+                    <div className="itemContent">
+                      <strong className="itemTitle">0333 Numbers</strong>
+                      <p className="itemDescription">
+                        Numbers for a nationwide presence
+                      </p>
+                    </div>
+                  </li>
+                  <li className="dropdownItem">
+                    <span>
+                      <CiMicrophoneOn className="extraSvg" />
+                    </span>
+                    <div className="itemContent">
+                      <strong className="itemTitle">0300 Numbers</strong>
+                      <p className="itemDescription">
+                        For charities & public bodies
+                      </p>
+                    </div>
+                  </li>
+                  <li className="dropdownItem">
+                    <span>
+                      <LiaHeadsetSolid className="extraSvg" />
+                    </span>
+                    <div className="itemContent">
+                      <strong className="itemTitle">VoIP System</strong>
+                      <p className="itemDescription">
+                        Complete Business Phone Solution
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
               // </div>
             )}
           </li>
@@ -211,8 +206,10 @@ function Header() {
               Help Center <IoMdArrowDropdown />
             </button>
             {dropdownsOpen === 5 && (
-              <div className="dropdownMenu" style={{ minWidth: "450px" }}>
-                <a href="/virtual-number"><h3 className="dropdownTitle">What is a Virtual Number </h3></a>
+              <div className="dropdownMenu" style={{ minWidth: "300px" }}>
+                <a href="/virtual-number">
+                  <h4 className="dropdownTitle">What is a Virtual Number </h4>
+                </a>
                 {/* <p className="dropdownDescription">
                   Connect With Your Customers, Pick Your Perfect Number
                 </p> */}
@@ -228,7 +225,9 @@ function Header() {
             </button>
             {dropdownsOpen === 6 && (
               <div className="dropdownMenu" style={{ minWidth: "250px" }}>
-                <a href="/about"><h3 className="dropdownTitle">About Us </h3></a>
+                <a href="/about">
+                  <h3 className="dropdownTitle">About Us </h3>
+                </a>
                 {/* <p className="dropdownDescription">
                   Connect With Your Customers, Pick Your Perfect Number
                 </p> */}
@@ -238,10 +237,22 @@ function Header() {
           <li className="navItem">Contact</li>
         </ul>
       </nav>
-      <button className="accountButton">
-        My Account
-        <IoMdArrowDropdown style={{ transform: "translateY(4px)" }} />
-      </button>
+      <a href="/admin">
+        <button className="accountButton dropdown" 
+        // onClick={() => handleDropDowns(7)}
+        >
+          My Account
+          <IoMdArrowDropdown style={{ transform: "translateY(4px)" }} />
+        </button>
+        {dropdownsOpen === 7 && (
+          <div className="dropdownMenu" style={{ minWidth: "250px" }}>
+            <a href="/admin">
+              <h5 className="dropdownTitle">Account Administration </h5>
+            </a>
+            
+          </div>
+        )}
+      </a>
     </header>
   );
 }

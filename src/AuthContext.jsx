@@ -6,20 +6,23 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (userData) => {
-    setUser(userData); // Assume userData contains the token and other user info
-    localStorage.setItem('user', JSON.stringify(userData)); // Optional: Store user in localStorage
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData)); 
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user'); // Optional: Remove user from localStorage
+    localStorage.removeItem('user')
   };
 
   useEffect(() => {
-    // Check if user data is stored in localStorage and set it
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUser(storedUser);
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error('Error parsing stored user:', error);
+      }
     }
   }, []);
   console.log("AuthProvider user:", user);

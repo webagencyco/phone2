@@ -1,0 +1,50 @@
+/* Invoices.css */
+.invoices-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .invoices-container h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .invoice-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .invoice-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .invoice-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .invoice-item p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .invoice-item p strong {
+    color: #000;
+  }
+  
+  .invoice-item p span {
+    color: #333;
+  }
+  

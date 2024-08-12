@@ -15,8 +15,12 @@ import { AuthProvider } from "./AuthContext";
 import AccountAdministration from "./components/AccountAdministration.jsx";
 import ProtectedRoute from "./ProtectedRoute";
 import Stats from "./components/Stats.jsx";
-
+import PaymentPage from "./components/PaymentPage.jsx";
 import "./App.css";
+import ChangePasswordPage from "./components/ChangePass.jsx";
+import UserDetails from "./components/UserDetails.jsx";
+import EmailVerification from "./components/EmailVerification.jsx";
+import Invoices from "./components/Invioces.jsx";
 
 export const server = "http://localhost:5000";
 
@@ -38,21 +42,22 @@ function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/about" element={<About />} />
             <Route path="/virtual-number" element={<VirtualNumber />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/administration" element={<AccountAdministration />} />
 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            {/* <Route element={<ProtectedRoute />}> */}
+              <Route path="/admin" element={<AccountAdministration />} />
 
-            <Route
-              path="/stats"
-              element={
-                // <ProtectedRoute>
-                  <Stats />
-                // </ProtectedRoute>
-              }
-            />
+              <Route path="/admin/usage" element={<Stats />} />
+              <Route path="/verify-email" element={<EmailVerification />} />
+              <Route path="/admin/invoices" element={<Invoices />} />
+              <Route path="/admin/payment" element={<PaymentPage />} />
+              <Route
+                path="/admin/change-password"
+                element={<ChangePasswordPage />}
+              />
+              <Route path="/admin/my-details" element={<UserDetails />} />
+            {/* </Route> */}
           </Routes>
           <Footer />
         </div>

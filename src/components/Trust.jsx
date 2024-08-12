@@ -1,7 +1,13 @@
 import React from 'react';
 import "./MainPage.scss";
+import { useLocation } from 'react-router-dom';
 
 const Trust = () => {
+
+  const location = useLocation();
+  if (location.pathname.includes("admin")){
+    return null
+  }
   return (
     <div className='main-page'>
 
