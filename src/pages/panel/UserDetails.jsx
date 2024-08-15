@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./UserDetails.css";
-import { AuthContext } from "../AuthContext";
-import { server } from "../App";
+import { AuthContext } from "../../AuthContext";
+import { server } from "../../App";
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState({

@@ -1,8 +1,8 @@
 import React from 'react';
-import "./MainPage.scss";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Trust = () => {
+  const navigate = useNavigate();
 
   const location = useLocation();
   if (location.pathname.includes("admin")){
@@ -12,10 +12,10 @@ const Trust = () => {
     <div className='main-page'>
 
     <header className="main-page__header">
-        <img
+        <img onClick={() => navigate("/")} 
           src="https://faithtelecom.co.uk/wp-content/uploads/2018/11/logo.svg"
           alt="Faith Logo"
-          className="main-page__logo"
+          className="main-page__logo cursor-pointer"
         />
         <div className="flex justify-around items-center">
           <img

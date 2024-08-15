@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { server } from "../App";
-import { AuthContext } from "../AuthContext";
+import { server } from "../../App";
+import { AuthContext } from "../../AuthContext";
 import "./Invoices.css";
 
 const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
   const { user } = useContext(AuthContext);
+  console.log(user);
 
   useEffect(() => {
     const fetchInvoices = async () => {

@@ -57,12 +57,11 @@
     }
 
     .main-page__hero-image {
-   
       height: auto;
     }
   }
 
-  .borderline{
+  .borderline {
     background: -webkit-linear-gradient(top, #c6117d 0%, #e50471 100%);
   }
   .view-feature {
@@ -86,21 +85,19 @@
     flex-direction: column;
     justify-items: center;
     align-items: center;
-    gap: 10px;
 
     h2 {
       font-size: 38px;
       margin-bottom: 30px;
     }
 
-    >p {
+    > p {
       text-align: center;
       font-size: 24px;
       font-family: sans-serif;
       width: 80%;
       margin: 10px auto;
     }
-    
   }
 
   .main-page__features {
@@ -110,7 +107,7 @@
   .main-page__features-container {
     display: flex;
 
-    >img {
+    > img {
       height: 350px;
       margin-top: 5%;
     }
@@ -129,14 +126,13 @@
 
   .main-page__numbers-options {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     padding-left: 40px;
     padding-right: 40px;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 
     .main-page__number-option {
-      width: 33%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -144,18 +140,11 @@
       border: 3px solid transparent;
       border-image: linear-gradient(to top, #c6117d 0%, #e50471 100%) 1;
       transition: transform 0.3s ease-in-out;
+      height: 500px;
 
       img {
         height: 200px;
         width: 200px;
-      }
-
-      p {
-        font-size: 24px;
-        font-weight: lighter;
-        color: gray;
-        margin-bottom: 20px;
-        padding: 0px 20px;
       }
 
       h3 {
@@ -183,7 +172,6 @@
   }
 
   .main-page__features-list {
-
     .main-page__feature,
     .main-page__premium-feature {
       max-width: 200px;
@@ -191,8 +179,6 @@
       background-color: #fff;
       padding: 20px;
       border-radius: 10px;
-
-      
 
       h3 {
         font-size: 20px;
@@ -213,7 +199,14 @@
   }
 }
 
+.price-options .dropdownItem:hover {
+  background-color: #ffffff !important;
+}
 
+.premium-price-features .dot {
+  background-color: #fcd164;
+  border-color: #f9e8bb;
+}
 .feature-link {
   color: #1a73e8;
   font-weight: 600;
@@ -223,4 +216,65 @@
 
 .focus\:shadow-blue:focus {
   box-shadow: 0 0 8px 2px rgba(59, 130, 246, 0.75); /* Blue shadow */
+}
+.getTouch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 2.3rem;
+  background: -webkit-linear-gradient(top, #c6117d 0%, #e50471 100%);
+  color: white;
+}
+.message {
+  padding: 10px 30px;
+  border: 1px solid rgb(251 113 133);
+  font-size: 23px;
+  border-radius: 28px;
+  cursor: pointer;
+}
+
+.message:hover {
+  background: -webkit-linear-gradient(top, #c6117d 0%, #e50471 100%);
+  color: white;
+}
+
+.getTouch{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 2.3rem;
+  background: -webkit-linear-gradient(top, #c6117d 0%, #e50471 100%);
+  color: white;
+}
+
+.WhatsgetTouch{
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 2.3rem;
+  background: -webkit-linear-gradient(top, #c6117ec7 0%, #e50471b6 10%);
+  color: white;
+}
+.messageBox {
+  padding: 6px 20px;
+  background: -webkit-linear-gradient(top, #c6117d 0%, #e50471 100%);
+  color: white;
+  font-size: 20px;
+  border-radius: 28px;
+  cursor: pointer;
+}
+
+//----------------- Accordian ------------
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.accordion-content.open {
+  max-height: 500px;
+  padding-top: 1rem; 
+  padding-bottom: 1rem; 
 }

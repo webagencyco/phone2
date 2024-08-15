@@ -2,14 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.6rem 2.3rem;
+  padding: 13px 30px;
   background: -webkit-linear-gradient(top, #c6117d 0%, #e50471 100%);
   color: white;
 }
 
 .navList {
   display: flex;
-  list-style-type: none;
   gap: 1rem;
   text-wrap: nowrap;
 }
@@ -21,31 +20,53 @@
 
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdownButton {
   display: flex;
-  background-color: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
 }
 
 .dropdownMenu {
   position: absolute;
   background-color: rgb(255, 255, 255);
-  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  z-index: 1;
+  z-index: 10;
   color: #333;
-  padding: 2rem;
+  padding: 25px 20px;
   top: 38px;
   left: -20px;
 }
 .featuresDropDown{
-  width: 800px;
+  text-wrap: wrap;
+}
+
+.featuresDropDown > div ul{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.featuresDropDown::before {
+  left: 180px !important;
+}
+.featuresDropDown >div ul li {
+  width: 45%;
+}
+.featuresDropDown .dropdownList{
+  width: 500px;
+}
+
+.premiumFeatures ul li{
+  width: 300px !important;
+  padding: 0 5px;
+}
+.solDropdowns h4{
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 15px;
+}
+.solDropdowns h4:hover{
+  background-color: #ededf0;
 }
 .bglight {
   background-color: rgb(244, 244, 250);
@@ -60,7 +81,7 @@
   content: "";
   height: 15px;
   width: 15px;
-  background-color: rgb(237, 237, 238);
+  background-color: rgb(255, 255, 255);
   clip-path: polygon(48% 54%, 0% 100%, 100% 100%);
   position: absolute;
   top: -15px;
@@ -84,14 +105,20 @@
 }
 
 .dropdownItem {
+  padding: 5px 10px;
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.dropdownItem:hover {
+  background-color: #ededf0;
 }
 
 .dot {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   background-color: #6a5acd;
   border-radius: 50%;
   border: 4px solid #ccc7e9;

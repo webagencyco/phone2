@@ -8,9 +8,9 @@ const ProtectedRoute = () => {
     return null;
   }
   console.log(isAuthenticated);
-  // if(!isAuthenticated) {
-  //   return <Navigate to="/login" replace />;
-  // }
+  if(!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
   return <Outlet />;
 };
 

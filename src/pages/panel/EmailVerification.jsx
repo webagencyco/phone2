@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { server } from '../App';
+import { server } from '../../App';
 
 const EmailVerification = () => {
   const [verificationStatus, setVerificationStatus] = useState('Verifying...');

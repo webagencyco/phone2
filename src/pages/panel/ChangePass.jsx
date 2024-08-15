@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../../AuthContext';
 
 const ChangePasswordPage = () => {
   const [oldPassword, setOldPassword] = useState('');

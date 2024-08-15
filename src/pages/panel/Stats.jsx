@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "../AuthContext";
-import { server } from "../App";
-import "./MainPage.scss";
+import { AuthContext } from "../../AuthContext";
+import { server } from "../../App";
+import "../MainPage.scss";
 import { Link } from "react-router-dom";
 
 const Stats = () => {
