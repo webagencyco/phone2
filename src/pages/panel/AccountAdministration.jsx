@@ -75,13 +75,13 @@ const AccountAdministration = () => {
       isNew: false,
       to: "/admin/greetings",
     },
-    {
-      id: 5,
-      label: "Missed Call Alerts",
-      icon: <MdMissedVideoCall />,
-      isNew: false,
-      to: "/admin/missedcalls",
-    },
+    // {
+    //   id: 5,
+    //   label: "Missed Call Alerts",
+    //   icon: <MdMissedVideoCall />,
+    //   isNew: false,
+    //   to: "/admin/missedcalls",
+    // },
     {
       id: 6,
       label: "Blacklist",

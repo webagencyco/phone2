@@ -35,7 +35,14 @@ import Login from "./pages/panel/Login.jsx";
 import Register from "./pages/panel/Register.jsx";
 
 import { AuthProvider } from "./AuthContext";
+import VoicemailBox from "./pages/additional/Voicemail.jsx";
 import "./App.css";
+import Greetings from "./pages/additional/Greetings.jsx";
+import HuntGroups from "./pages/additional/HuntGroups.jsx";
+import Blacklist from "./pages/additional/Blacklist.jsx";
+import HolidaySettings from "./pages/additional/Holidays.jsx";
+import ControlApp from "./pages/additional/ControlApp.jsx";
+import FaxToEmail from "./pages/additional/FaxEmail.jsx";
 
 export const server = "http://localhost:5000";
 
@@ -73,7 +80,16 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
-            <Route element={<ProtectedRoute />}>
+
+            <Route path="/admin/voicemail" element={<VoicemailBox />} />
+            <Route path="/admin/greetings" element={<Greetings />} />
+            <Route path="/admin/hunt-group" element={<HuntGroups />} />
+            <Route path="/admin/blacklist" element={<Blacklist />} />
+            <Route path="/admin/holiday" element={<HolidaySettings />} />
+            <Route path="/admin/mobile-app" element={<ControlApp />} />
+            <Route path="/admin/fax2email" element={<FaxToEmail />} />
+
+            {/* <Route element={<ProtectedRoute />}> */}
               <Route path="/admin" element={<AccountAdministration />} />
 
               <Route path="/admin/usage" element={<Stats />} />
@@ -85,7 +101,7 @@ function App() {
                 element={<ChangePasswordPage />}
               />
               <Route path="/admin/my-details" element={<UserDetails />} />
-            </Route>
+            {/* </Route> */}
           </Routes>
           <Footer />
         </div>
