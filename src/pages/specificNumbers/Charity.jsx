@@ -4,6 +4,9 @@ import axios from "axios";
 import { server } from "../../App";
 import Modal from "react-modal";
 import Pagination from "../../components/Pagination";
+import NumberOption from "../../components/NumberOption";
+import ChoosePriceSection from "../../components/ChoosePrice";
+import TailorOption from "../../components/TailorOption";
 
 const Charity = () => {
   const navigate = useNavigate();
@@ -138,7 +141,7 @@ const Charity = () => {
     setTailor("");
   };
 
-const handleConfirmNumber = () => {
+  const handleConfirmNumber = () => {
     setSelectedNumbers([
       ...selectedNumbers,
       {
@@ -273,284 +276,80 @@ const handleConfirmNumber = () => {
           Step 1: What Type Of Service Do You Need?
         </h2>
         <div className="main-page__numbers-options flex justify-around">
-          <div className="main-page__number-option w-[40%] !h-[400px] xs:w-[700%]">
-            {/* <img
-              src="https://www.tamartelecommunications.co.uk/wp-content/themes/tamar/img/uk2.png"
-              alt="Local Numbers"
-            /> */}
-            <h3>Receive Calls</h3>
-            <p className="text-lg">Receive Calls Our Classic Virtual Numbers</p>
-
-            <p className="text-center font-bold text-gray-500 py-5">
-              Professional Business Phone Numbers. Simple, Affordable, Effective
-            </p>
-            <ul className="dropdownList px-10">
-              <li className="dropdownItem ">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Mobile landline numbers</p>
-                </div>
-              </li>
-              <li className=" dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">
-                    Free to call from landlines & mobiles
-                  </p>
-                </div>
-              </li>
-              <li className="dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">
-                    Numbers for a nationwide presence
-                  </p>
-                </div>
-              </li>
-            </ul>
-
-            <a href="#choosePrice">
-              <button
-                onClick={() => {
-                  setCallType("Recieve");
-                }}
-                className={callType === "Recieve" ? "bg-yellow-300" : " "}
-              >
-                {callType === "Recieve" ? "Selected" : "Choose Your Number"}
-              </button>
-            </a>
-          </div>
-          <div className="main-page__number-option !h-[400px] w-[40%]">
-            {/* <img
-              src="https://www.tamartelecommunications.co.uk/wp-content/themes/tamar/img/uk3.png"
-              alt="0333 Numbers"
-            /> */}
-            <h3>Make & Receive Calls</h3>
-            <p className="text-lg">Our Complete VoIP System</p>
-            <p className="text-center font-bold text-gray-500 py-6">
-              Professional Business Phone Numbers. Simple, Affordable, Effective
-            </p>
-            <ul className="dropdownList px-10">
-              <li className="dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Mobile landline numbers</p>
-                </div>
-              </li>
-              <li className="w-[100%] dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">
-                    Free to call from landlines & mobiles
-                  </p>
-                </div>
-              </li>
-              <li className="w-[100%] dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">
-                    Numbers for a nationwide presence
-                  </p>
-                </div>
-              </li>
-            </ul>
-            <a href="#choosePrice">
-              <button
-                className={callType === "Make" ? "bg-yellow-300" : ""}
-                onClick={() => {
-                  setCallType("Make");
-                }}
-              >
-                {callType === "Make" ? "Selected" : "Choose Your Number"}
-              </button>
-            </a>
-          </div>
+          <NumberOption
+            title="Receive Calls"
+            description="Receive Calls Our Classic Virtual Numbers"
+            details="Professional Business Phone Numbers. Simple, Affordable, Effective"
+            callType={[
+              "Mobile landline numbers",
+              "Free to call from landlines & mobiles",
+              "Numbers for a nationwide presence",
+            ]}
+            selected={callType === "Receive"}
+            onClick={() => setCallType("Receive")}
+          />
+          <NumberOption
+            title="Make & Receive Calls"
+            description="Our Complete VoIP System"
+            details="Professional Business Phone Numbers. Simple, Affordable, Effective"
+            callType={[
+              "Mobile landline numbers",
+              "Free to call from landlines & mobiles",
+              "Numbers for a nationwide presence",
+            ]}
+            selected={callType === "Make"}
+            onClick={() => setCallType("Make")}
+          />
         </div>
       </section>
 
-      <section id="choosePrice" className="main-page__numbers">
-        <h2 className="text-transparent bg-clip-text bg-gradient-to-t from-[#c6117d] to-[#e50471]">
-          Step 2: Select Your Tariff
-        </h2>
-        <p className="!text-[15px]">
-          Choose A Tariff With The Amount Of Minutes You Need Each Month Per
-          User
-        </p>
-        <div className="main-page__numbers-options flex justify-around">
-          {plans.length > 0 ? (
-            plans.map((plan, index) => (
-              <div
-                key={index}
-                className={
-                  index === 2
-                    ? "main-page__number-option !h-[850px]"
-                    : "main-page__number-option"
-                }
-              >
-                <h3>{plan.name}</h3>
-                <p>{plan.price}</p>
-                <b>/Month +VAT</b>
-                <ul className="price-options dropdownList my-5">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="dropdownItem">
-                      <span className="dot w-5 h-5"></span>
-                      <div className="itemContent">
-                        <p className="itemDescription">{feature}</p>
-                      </div>
-                    </li>
-                  ))}
-                  {plan.premiumFeatures && (
-                    <>
-                      <p className="text-center">PLUS These Premium Features</p>
-                      <div className="pl-1 premium-price-features">
-                        {plan.premiumFeatures.map((feature, idx) => (
-                          <li key={idx} className="dropdownItem">
-                            <span className="dot w-5 h-5"></span>
-                            <div className="itemContent">
-                              <p className="itemDescription">{feature}</p>
-                            </div>
-                          </li>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </ul>
-                <a href="#tailor">
-                  <button
-                    className={
-                      tariffPrice === plan.value ? "bg-yellow-300" : ""
-                    }
-                    onClick={(e) => {
-                      fetchPartialNumbers();
-                      TariffHandler(e, plan.price, plan.value, index);
-                      index === 2
-                        ? (setButtonDisabled(!ButtonDisabled),
-                          setTailor("Switchboard"))
-                        : setButtonDisabled(false);
-                      console.log(tariffPrice);
-                    }}
-                  >
-                    Build my Number
-                  </button>
-                </a>
-              </div>
-            ))
-          ) : (
-            <p>Loading tariffs...</p>
-          )}
-        </div>
-      </section>
+      <ChoosePriceSection
+        plans={plans}
+        tariffPrice={tariffPrice}
+        fetchPartialNumbers={fetchPartialNumbers}
+        TariffHandler={TariffHandler}
+        setButtonDisabled={setButtonDisabled}
+        ButtonDisabled={ButtonDisabled}
+        setTailor={setTailor}
+      />
 
       <section id="tailor" className="main-page__numbers">
         <h2 className="text-transparent bg-clip-text bg-gradient-to-t from-[#c6117d] to-[#e50471]">
           Step 3: Tailor Your Number
         </h2>
         <div className="main-page__numbers-options flex justify-around">
-          <div className="main-page__number-option !w-[300px] !h-[400px] xs:w-[700%]">
-            {/* <img
-              src="https://www.tamartelecommunications.co.uk/wp-content/themes/tamar/img/uk2.png"
-              alt="Local Numbers"
-            /> */}
-            <h3>Call Whisper</h3>
-            <p className="text-sm">"Incoming Business Call"</p>
-            <p className="text-center font-bold text-gray-500 py-5">
-              Whats Included
-            </p>
-            <ul className="dropdownList px-10">
-              <li className="dropdownItem ">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Call Whisper</p>
-                </div>
-              </li>
-              <li className=" dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Caller Announcement</p>
-                </div>
-              </li>
-              <li className="dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Press 1 To Accept A Call</p>
-                </div>
-              </li>
-              <p className="text-center font-bold text-gray-500 py-5">
-                {whisperPrice} Per Month +VAT
-              </p>
-            </ul>
-
-            {/* <a href="#choosePrice"> */}
-            <button
-              onClick={(e) => {
-                TailorHandler(e, "Whisper", whisperPrice, 1);
-              }}
-              className={
-                tailor === "Whisper" || tailor === "Switchboard"
-                  ? "bg-yellow-300"
-                  : ""
-              }
-              disabled={ButtonDisabled}
-            >
-              {tailor === "Whisper" ? (
-                <p>Selected</p>
-              ) : tailor === "Switchboard" ? (
-                <p>Included with Virtual Switchboard</p>
-              ) : tariff === "TF3" ? (
-                <p>Included With Unlimited</p>
-              ) : (
-                <p>Add to your number</p>
-              )}
-            </button>
-            {/* </a> */}
-          </div>
-          <div className="main-page__number-option !w-[300px] !h-[400px] xs:w-[700%]">
-            {/* <img
-              src="https://www.tamartelecommunications.co.uk/wp-content/themes/tamar/img/uk2.png"
-              alt="Local Numbers"
-            /> */}
-            <h3>Virtual Switchboard</h3>
-            <p className="text-sm">"Press 1 For Sales, 2 For Accounts..."</p>
-            <p className="text-center font-bold text-gray-500 py-5">
-              Whats Included
-            </p>
-            <ul className="dropdownList px-10">
-              <li className="dropdownItem ">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Virtual Switchboard</p>
-                </div>
-              </li>
-              <li className=" dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Up To 10 Menu Options</p>
-                </div>
-              </li>
-              <li className="dropdownItem">
-                <span className="dot"></span>
-                <div className="itemContent">
-                  <p className="itemDescription">Free Professional Greeting</p>
-                </div>
-              </li>
-              <p className="text-center font-bold text-gray-500 py-5">
-                {vsbPrice} Per Month +VAT
-              </p>
-            </ul>
-
-            {/* <a href="#choosePrice"> */}
-            <button
-              onClick={(e) => {
-                TailorHandler(e, "Switchboard", vsbPrice, 1);
-                console.log(tailorPrice);
-              }}
-              className={tailor === "Switchboard" ? "bg-yellow-300" : ""}
-              disabled={ButtonDisabled}
-            >
-              {tailor === "Switchboard" ? "Selected" : "Add to your Number"}
-            </button>
-            {/* </a> */}
-          </div>
+          <TailorOption
+            title="Call Whisper"
+            subtitle='"Incoming Business Call"'
+            details="Whats Included"
+            options={[
+              "Call Whisper",
+              "Caller Announcement",
+              "Press 1 To Accept A Call",
+            ]}
+            price={whisperPrice}
+            selected={tailor === "Whisper" || tailor === "Switchboard"}
+            onClick={(e) => TailorHandler(e, "Whisper", whisperPrice, 1)}
+            tailor={tailor}
+            tariff={tariff}
+            ButtonDisabled={ButtonDisabled}
+          />
+          <TailorOption
+            title="Virtual Switchboard"
+            subtitle='"Press 1 For Sales, 2 For Accounts..."'
+            details="Whats Included"
+            options={[
+              "Virtual Switchboard",
+              "Up To 10 Menu Options",
+              "Free Professional Greeting",
+            ]}
+            price={vsbPrice}
+            selected={tailor === "Switchboard"}
+            onClick={(e) => TailorHandler(e, "Switchboard", vsbPrice, 1)}
+            tailor={tailor}
+            tariff={tariff}
+            ButtonDisabled={ButtonDisabled}
+          />
         </div>
       </section>
 
@@ -602,14 +401,12 @@ const handleConfirmNumber = () => {
         />
 
         {showButton && (
-          <div className="flex justify-center my-10">
-            <div id="partialNumbers" className="flex">
-              <a href="#choosePrice">
-                <button className=" bg-[#e50471] text-white py-2 px-4 rounded ">
-                  Please Choose a Tariff First{" "}
-                </button>
-              </a>
-            </div>
+          <div id="partialNumbers" className="flex justify-center mb-10">
+            <a href="#choosePrice">
+              <button className=" bg-[#e50471] text-white py-2 px-4 rounded ">
+                Please Choose a Tariff First{" "}
+              </button>
+            </a>
           </div>
         )}
 
@@ -637,16 +434,31 @@ const handleConfirmNumber = () => {
           onRequestClose={() => setIsModalOpen(false)}
           ariaHideApp={false}
           contentLabel="Enter Destination"
+          className={
+            "p-10 flex flex-col items-center bg-gray-50 shadow-2xl h-[80vh] mt-[5%] ml-[10%] w-[80%] gap-10 rounded"
+          }
         >
-          <h2>Enter Destination for {currentNumber}</h2>
+          <h2 className="text-2xl text-[#e50471]">
+            Enter Destination for {currentNumber}
+          </h2>
           <input
             type="text"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             placeholder="Enter destination"
+            className="h-10 rounded px-3 outline-none"
           />
-          <button onClick={handleConfirmNumber}>Confirm</button>
-          <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+          <div>
+            <button
+              className="py-2 mr-10 px-4 rounded bg-[#e50471] text-white"
+              onClick={handleConfirmNumber}
+            >
+              Confirm
+            </button>
+            <button className="" onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </button>
+          </div>
         </Modal>
       </div>
     </div>
